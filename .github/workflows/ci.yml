@@ -34,10 +34,24 @@ jobs:
       run: |
         echo "LOG_LEVEL=INFO" >> $GITHUB_ENV
         echo "LOG_FILE=app.log" >> $GITHUB_ENV
-        # You can also add any other environment variables needed for your app here
+        echo "ENV=development" >> $GITHUB_ENV  # You can adjust this if needed
 
-    - name: Test with pytest --pylint
+    - name: Check environment variables
       run: |
-        pytest
-        # Optional: run flake8 to lint the code
+        echo "Checking environment variables..."
+        printenv | grep LOG
+
+    - name: Run Tests
+      run: |
+        # Run pytest and capture any errors
+        pytest --maxfail=1 --disable-warnings -q
+
+    - name: Lint Code with flake8
+      run: |
+        # Running flake8 to lint the code
         flake8 .
+
+    - name: Show logs
+      run: |
+        # Display the log file to see if it was created
+        cat app.log || echo "No log file created"

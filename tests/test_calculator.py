@@ -13,11 +13,12 @@ def test_subtract():
     assert Calculator.subtract(5, 3) == 2
 
 def test_multiply():
-    assert Calculator.multiply(2, 3) == 6
+    assert Calculator.multiply(4, 3) == 12
 
 def test_divide():
-    assert Calculator.divide(6, 2) == 3
+    assert Calculator.divide(10, 2) == 5
 
 def test_divide_by_zero():
-    with pytest.raises(ValueError):
-        Calculator.divide(6, 0)
+    import pytest
+    with pytest.raises(ValueError, match="Division by zero is not allowed."):
+        Calculator.divide(10, 0)

@@ -5,41 +5,45 @@ Unit tests for the HistoryManager class.
 """
 
 import os
-import pandas as pd
 import pytest
+import pandas as pd
 from calculator.history_manager import HistoryManager
 
 @pytest.fixture
-def cleanup_history():
-    """Fixture to remove history file after tests."""
-    yield
-    if os.path.exists(HistoryManager.FILE_PATH):
-        os.remove(HistoryManager.FILE_PATH)
+def _history_manager():
+    """Fixture to provide a fresh instance of HistoryManager for each test."""
+    manager = HistoryManager()
+    yield manager  # Provide instance
+    if os.path.exists(manager.FILE_PATH):
+        os.remove(manager.FILE_PATH)  # Cleanup file after test
 
-@pytest.mark.usefixtures("cleanup_history")
-def test_save_to_history():
-    """Test saving an operation to history using pandas."""
-    HistoryManager.save_to_history("2 + 2", 4)
-    history = HistoryManager.load_history()
+def test_add_entry(_history_manager):
+    """Test adding an operation to history."""
+    _history_manager.add_entry("+", 2, 2, 4)
+    history = pd.read_csv(_history_manager.FILE_PATH)
 
-    assert not history.empty
-    assert history.iloc[-1]["Operation"] == "2 + 2"
-    assert history.iloc[-1]["Result"] == 4
+    assert not history.empty, "History file should not be empty."
+    assert history.iloc[-1]["Operation"] == "2 + 2", "Operation format mismatch."
+    assert history.iloc[-1]["Result"] == 4.0, "Result mismatch."
 
-@pytest.mark.usefixtures("cleanup_history")
-def test_clear_history():
+def test_clear_history(_history_manager):
     """Test clearing the calculation history."""
-    HistoryManager.save_to_history("3 * 3", 9)
-    HistoryManager.clear_history()
+    _history_manager.add_entry("*", 3, 3, 9)
+    _history_manager.clear_history()
 
-    history = HistoryManager.load_history()
-    assert history.empty
+    assert not os.path.exists(_history_manager.FILE_PATH), "History file should be deleted."
 
-@pytest.mark.usefixtures("cleanup_history")
-def test_load_history_when_empty():
-    """Test loading history when no history exists."""
-    history = HistoryManager.load_history()
+def test_get_history_when_empty(_history_manager):
+    """Test retrieving history when no history exists."""
+    history = _history_manager.get_history()
+    assert history == "History is empty.", "Expected 'History is empty.' but got different output."
 
-    assert isinstance(history, pd.DataFrame)
-    assert history.empty
-    assert list(history.columns) == ["Operation", "Result"]
+def test_get_history_with_entries(_history_manager):
+    """Test retrieving history when it contains operations."""
+    _history_manager.add_entry("+", 2, 3, 5)
+    _history_manager.add_entry("-", 10, 7, 3)
+
+    history = _history_manager.get_history()
+
+    assert "2 + 3 = 5" in history, "Expected '2 + 3 = 5' in history output."
+    assert "10 - 7 = 3" in history, "Expected '10 - 7 = 3' in history output."

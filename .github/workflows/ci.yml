@@ -17,7 +17,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
+    - name: Checkout code
+      uses: actions/checkout@v3
 
     - name: Set up Python 3.10
       uses: actions/setup-python@v3
@@ -27,14 +28,18 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install flake8 pytest
-        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+        pip install -r requirements.txt
 
     - name: Set up environment variables
       run: |
         echo "LOG_LEVEL=INFO" >> $GITHUB_ENV
         echo "LOG_FILE=app.log" >> $GITHUB_ENV
-        echo "ENV=development" >> $GITHUB_ENV  # You can adjust this if needed
+        echo "ENV=development" >> $GITHUB_ENV
+
+    - name: Verify installed dependencies
+      run: |
+        echo "Verifying installed dependencies..."
+        pip freeze
 
     - name: Check environment variables
       run: |
@@ -43,15 +48,15 @@ jobs:
 
     - name: Run Tests
       run: |
-        # Run pytest and capture any errors
+        echo "Running tests with pytest..."
         pytest --maxfail=1 --disable-warnings -q
 
     - name: Lint Code with flake8
       run: |
-        # Running flake8 to lint the code
+        echo "Running flake8 linting..."
         flake8 .
 
     - name: Show logs
       run: |
-        # Display the log file to see if it was created
+        echo "Showing log file contents..."
         cat app.log || echo "No log file created"

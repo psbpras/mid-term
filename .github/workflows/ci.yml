@@ -39,24 +39,25 @@ jobs:
     - name: Verify installed dependencies
       run: |
         echo "Verifying installed dependencies..."
-        pip freeze
+        pip freeze  # FIX: Now on a separate line
 
     - name: Check environment variables
       run: |
         echo "Checking environment variables..."
-        printenv | grep LOG
+        printenv | grep LOG || echo "No LOG environment variables found"
 
     - name: Run Tests
       run: |
         echo "Running tests with pytest..."
-        pytest --maxfail=1 --disable-warnings -q
+        pytest --maxfail=1 --disable-warnings -q || exit 1
 
     - name: Lint Code with flake8
       run: |
         echo "Running flake8 linting..."
-        flake8 .
+        flake8 || exit 1  # Ensures failure if linting issues are found
 
     - name: Show logs
+      if: always()
       run: |
         echo "Showing log file contents..."
         cat app.log || echo "No log file created"

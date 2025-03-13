@@ -3,6 +3,7 @@
 Factory Pattern to create calculator operations dynamically.
 """
 
+
 class OperationFactory:
     """Factory class to create different arithmetic operations."""
 
@@ -15,5 +16,5 @@ class OperationFactory:
             "multiply": lambda x, y: x * y,
             "divide": lambda x, y: x / y if y != 0 else float("inf"),
         }
-        return operations.get(operation, lambda x, y: None)  # Default to None if not found
-
+        # Default to None if not found
+        return operations.get(operation, lambda x, y: None)

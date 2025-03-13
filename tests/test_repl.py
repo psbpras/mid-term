@@ -5,8 +5,11 @@ Unit tests for the REPL class.
 from unittest.mock import patch
 from calculator.repl import CalculatorREPL
 
-@patch("builtins.input", side_effect=["1", "2 + 3", "2", "3"])  # Simulates user choices
-def test_repl_execution(_, capsys):  # `_` is used for an unused argument to avoid Pylint warnings
+
+# Simulates user choices
+@patch("builtins.input", side_effect=["1", "2 + 3", "2", "3"])
+# `_` is used for an unused argument to avoid Pylint warnings
+def test_repl_execution(_, capsys):
     """Test REPL execution flow with mock input for menu navigation and calculations."""
 
     repl = CalculatorREPL()

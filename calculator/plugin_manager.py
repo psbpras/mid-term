@@ -6,6 +6,7 @@ Manages loading and executing plugins dynamically.
 import importlib
 import os
 
+
 class PluginManager:
     """Dynamically loads plugins from the 'plugins' directory."""
 

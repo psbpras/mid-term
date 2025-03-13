@@ -5,14 +5,16 @@ Plugin providing advanced mathematical operations.
 
 import math
 
+
 class AdvancedOperations:
     """Class containing advanced mathematical operations as static methods."""
 
     @staticmethod
-    def sqrt(x):  #  Match the test function names
+    def sqrt(x):  # Match the test function names
         """Returns the square root of x."""
         if x < 0:
-            raise ValueError("Cannot compute square root of a negative number.")
+            raise ValueError(
+                "Cannot compute square root of a negative number.")
         return math.sqrt(x)
 
     @staticmethod

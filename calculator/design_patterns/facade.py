@@ -5,6 +5,7 @@ Facade Pattern for simplified history management using Pandas.
 
 import pandas as pd
 
+
 class HistoryFacade:
     """A Facade to handle history management with a simple interface."""
 
@@ -15,7 +16,11 @@ class HistoryFacade:
         """Saves a new record to the history file."""
         df = pd.DataFrame([data])
         try:
-            df.to_csv(self.filename, mode='a', header=not self._file_exists(), index=False)
+            df.to_csv(
+                self.filename,
+                mode='a',
+                header=not self._file_exists(),
+                index=False)
         except Exception as e:
             print(f"Error saving history: {e}")
 
@@ -24,7 +29,12 @@ class HistoryFacade:
         try:
             return pd.read_csv(self.filename)
         except FileNotFoundError:
-            return pd.DataFrame(columns=["Operation", "Operand1", "Operand2", "Result"])
+            return pd.DataFrame(
+                columns=[
+                    "Operation",
+                    "Operand1",
+                    "Operand2",
+                    "Result"])
 
     def _file_exists(self):
         """Checks if the history file exists."""
@@ -33,4 +43,3 @@ class HistoryFacade:
                 return True
         except FileNotFoundError:
             return False
-

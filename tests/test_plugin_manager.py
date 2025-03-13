@@ -8,6 +8,7 @@ import os
 import pytest
 from calculator.plugin_manager import PluginManager
 
+
 @pytest.fixture
 def create_test_plugin():
     """Creates a temporary test plugin file."""
@@ -27,7 +28,9 @@ def test_function():
     if os.path.exists(plugin_path):
         os.remove(plugin_path)
 
-@pytest.mark.usefixtures("create_test_plugin")  # Use fixture without explicit argument
+
+# Use fixture without explicit argument
+@pytest.mark.usefixtures("create_test_plugin")
 def test_plugin_loading():
     """Test if the PluginManager correctly loads a plugin."""
     plugins = PluginManager.load_plugins()

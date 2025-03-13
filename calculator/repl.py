@@ -2,6 +2,7 @@
 
 from calculator.history_manager import HistoryManager
 
+
 class CalculatorREPL:
     def __init__(self):
         self.history_manager = HistoryManager()
@@ -20,7 +21,8 @@ class CalculatorREPL:
             # Split input into operands and operator (basic parsing)
             parts = user_input.split()
             if len(parts) != 3:
-                raise ValueError("Invalid input format. Use: <num1> <operator> <num2>")
+                raise ValueError(
+                    "Invalid input format. Use: <num1> <operator> <num2>")
 
             num1, operator, num2 = parts
             num1, num2 = float(num1), float(num2)

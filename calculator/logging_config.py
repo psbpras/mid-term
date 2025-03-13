@@ -3,6 +3,7 @@
 import logging
 import os
 
+
 class LoggingConfig:
     """Singleton logging configuration for the application."""
 
@@ -34,9 +35,11 @@ class LoggingConfig:
         """Returns the configured logger instance."""
         return self.logger
 
+
 def configure_logging():
     """Function to initialize logging configuration."""
     LoggingConfig()
+
 
 # Instantiate logging configuration
 logger = LoggingConfig().get_logger()

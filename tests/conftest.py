@@ -4,6 +4,7 @@ import os
 import pytest
 from calculator.history_manager import HistoryManager
 
+
 @pytest.fixture
 def history_manager():
     """Fixture to provide a fresh instance of HistoryManager for each test."""

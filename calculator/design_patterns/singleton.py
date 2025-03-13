@@ -6,6 +6,7 @@ Singleton Pattern for a centralized logging system.
 import logging
 import os
 
+
 class LoggerSingleton:
     """Singleton logger to ensure a single logging instance throughout the application."""
 
@@ -32,4 +33,3 @@ class LoggerSingleton:
                 format="%(asctime)s - %(levelname)s - %(message)s"
             )
             LoggerSingleton._instance = logging.getLogger("CalculatorLogger")
-

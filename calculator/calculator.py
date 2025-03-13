@@ -3,6 +3,7 @@
 Core calculator functions supporting basic operations.
 """
 
+
 class Calculator:
     """A simple calculator supporting basic arithmetic operations."""
 

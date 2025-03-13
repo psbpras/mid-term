@@ -18,9 +18,10 @@ class HistoryFacade:
         try:
             df.to_csv(
                 self.filename,
-                mode='a',
+                mode="a",
                 header=not self._file_exists(),
-                index=False)
+                index=False,
+            )
         except Exception as e:
             print(f"Error saving history: {e}")
 
@@ -30,11 +31,8 @@ class HistoryFacade:
             return pd.read_csv(self.filename)
         except FileNotFoundError:
             return pd.DataFrame(
-                columns=[
-                    "Operation",
-                    "Operand1",
-                    "Operand2",
-                    "Result"])
+                columns=["Operation", "Operand1", "Operand2", "Result"]
+            )
 
     def _file_exists(self):
         """Checks if the history file exists."""

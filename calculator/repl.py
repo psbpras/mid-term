@@ -22,7 +22,8 @@ class CalculatorREPL:
             parts = user_input.split()
             if len(parts) != 3:
                 raise ValueError(
-                    "Invalid input format. Use: <num1> <operator> <num2>")
+                    "Invalid input format. Use: <num1> <operator> <num2>"
+                )
 
             num1, operator, num2 = parts
             num1, num2 = float(num1), float(num2)

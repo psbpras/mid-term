@@ -1,7 +1,12 @@
 import os
 import logging
 import dotenv
-from calculator.command import AddCommand, SubtractCommand, MultiplyCommand, DivideCommand
+from calculator.command import (
+    AddCommand,
+    SubtractCommand,
+    MultiplyCommand,
+    DivideCommand,
+)
 from calculator.calculator import Calculator  # Core calculator logic
 from calculator.plugin_manager import PluginManager
 from calculator.design_patterns.singleton import LoggerSingleton
@@ -23,7 +28,7 @@ COMMANDS = {
     "add": lambda a, b: AddCommand(calculator, a, b).execute(),
     "subtract": lambda a, b: SubtractCommand(calculator, a, b).execute(),
     "multiply": lambda a, b: MultiplyCommand(calculator, a, b).execute(),
-    "divide": lambda a, b: DivideCommand(calculator, a, b).execute()
+    "divide": lambda a, b: DivideCommand(calculator, a, b).execute(),
 }
 
 # Load dynamic plugins for additional operations

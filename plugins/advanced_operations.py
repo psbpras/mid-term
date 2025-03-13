@@ -14,7 +14,8 @@ class AdvancedOperations:
         """Returns the square root of x."""
         if x < 0:
             raise ValueError(
-                "Cannot compute square root of a negative number.")
+                "Cannot compute square root of a negative number."
+            )
         return math.sqrt(x)
 
     @staticmethod

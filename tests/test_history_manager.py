@@ -25,7 +25,9 @@ def test_add_entry(_history_manager):
     history = pd.read_csv(_history_manager.FILE_PATH)
 
     assert not history.empty, "History file should not be empty."
-    assert history.iloc[-1]["Operation"] == "2 + 2", "Operation format mismatch."
+    assert (
+        history.iloc[-1]["Operation"] == "2 + 2"
+    ), "Operation format mismatch."
     assert history.iloc[-1]["Result"] == 4.0, "Result mismatch."
 
 
@@ -35,13 +37,16 @@ def test_clear_history(_history_manager):
     _history_manager.clear_history()
 
     assert not os.path.exists(
-        _history_manager.FILE_PATH), "History file should be deleted."
+        _history_manager.FILE_PATH
+    ), "History file should be deleted."
 
 
 def test_get_history_when_empty(_history_manager):
     """Test retrieving history when no history exists."""
     history = _history_manager.get_history()
-    assert history == "History is empty.", "Expected 'History is empty.' but got different output."
+    assert (
+        history == "History is empty."
+    ), "Expected 'History is empty.' but got different output."
 
 
 def test_get_history_with_entries(_history_manager):

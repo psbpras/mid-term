@@ -2,7 +2,9 @@
 
 import math
 import pytest
-from plugins.advanced_operations import AdvancedOperations  # Ensure correct import
+from plugins.advanced_operations import (
+    AdvancedOperations,
+)  # Ensure correct import
 
 
 def test_power():

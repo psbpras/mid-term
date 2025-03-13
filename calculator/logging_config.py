@@ -24,10 +24,7 @@ class LoggingConfig:
         logging.basicConfig(
             level=log_level,
             format="%(asctime)s - %(levelname)s - %(message)s",
-            handlers=[
-                logging.FileHandler(log_file),
-                logging.StreamHandler()
-            ]
+            handlers=[logging.FileHandler(log_file), logging.StreamHandler()],
         )
         self.logger = logging.getLogger("AdvancedPythonCalculator")
 

@@ -30,6 +30,6 @@ class LoggerSingleton:
             logging.basicConfig(
                 filename=log_file,
                 level=getattr(logging, log_level, logging.INFO),
-                format="%(asctime)s - %(levelname)s - %(message)s"
+                format="%(asctime)s - %(levelname)s - %(message)s",
             )
             LoggerSingleton._instance = logging.getLogger("CalculatorLogger")

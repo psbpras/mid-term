@@ -34,6 +34,9 @@ class LoggingConfig:
         """Returns the configured logger instance."""
         return self.logger
 
+def configure_logging():
+    """Function to initialize logging configuration."""
+    LoggingConfig()
 
 # Instantiate logging configuration
 logger = LoggingConfig().get_logger()

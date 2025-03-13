@@ -1,10 +1,18 @@
 # calculator/repl.py
 
-from calculator.history_manager import HistoryManager  # ✅ Ensure this is imported
+from calculator.history_manager import HistoryManager
 
 class CalculatorREPL:
     def __init__(self):
         self.history_manager = HistoryManager()
+
+    def display_menu(self):
+        """Displays the menu options."""
+        print("\n===== Advanced Python Calculator =====")
+        print("1. Perform Calculation")
+        print("2. View Calculation History")
+        print("3. Exit")
+        print("======================================")
 
     def process_input(self, user_input):
         """Parses and evaluates user input, storing it in history."""
@@ -39,18 +47,26 @@ class CalculatorREPL:
             return f"Error: {e}"
 
     def start(self):
-        """Starts the REPL loop."""
-        print("Welcome to the Advanced Python Calculator! Type 'exit' to quit.")
+        """Starts the REPL loop with a menu."""
+        print("\nWelcome to the Advanced Python Calculator!")
 
         while True:
-            user_input = input("Enter expression: ").strip()
-            if user_input.lower() == "exit":
+            self.display_menu()
+            choice = input("Enter your choice (1-3): ").strip()
+
+            if choice == "1":
+                user_input = input("Enter expression (e.g., 2 + 3): ").strip()
+                result = self.process_input(user_input)
+                print(f"Result: {result}")
+
+            elif choice == "2":
+                history = self.history_manager.get_history()
+                print("\nCalculation History:")
+                print(history if history else "No calculations performed yet.")
+
+            elif choice == "3":
+                print("Exiting the calculator. Goodbye!")
                 break
 
-            result = self.process_input(user_input)
-            print(f"Result: {result}")
-
-        # Print history before quitting
-        print("History:")
-        print(self.history_manager.get_history())
-        print("Goodbye!")
+            else:
+                print("Invalid choice. Please enter a number between 1 and 3.")

@@ -1,36 +1,38 @@
 # Advanced Python Calculator for Software Engineering Graduate Course
 
-#Project structure:
+## Project structure:
 
-
+```
 AdvancedPythonCalculator/
 │── calculator/
 │   │── __init__.py
-│   │── calculator.py             # Core calculator functions
-│   │── history_manager.py        # Handles history management using Pandas
-│   │── logging_config.py         # Centralized logging setup
-│   │── repl.py                   # Command-line REPL interface
-│   │── command.py                # Implements Command Pattern for REPL commands
-│   │── plugin_manager.py         # Dynamically loads plugins
-│   │── design_patterns/
-│   │   │── __init__.py
-│   │   │── facade.py             # Implements Facade Pattern for history management
-│   │   │── factory.py            # Implements Factory Pattern for operations
-│   │   │── singleton.py          # Implements Singleton Pattern for logging
-│   │   │── strategy.py           # Implements Strategy Pattern for different operations
-│── plugins/                      # Directory for dynamically loaded plugins
+│   │── calculator.py  # Core calculator functions
+│   │── history_manager.py  # Handles history management using Pandas
+│   │── logging_config.py  # Centralized logging setup
+│   │── repl.py  # Command-line REPL interface
+│   │── command.py  # Implements Command Pattern for REPL commands
+│   │── plugin_manager.py  # Dynamically loads plugins
+│── design_patterns/
 │   │── __init__.py
-│   │── advanced_operations.py    # Example plugin for extra operations
-│── tests/                        # Unit tests with Pytest
+│   │── facade.py  # Implements Facade Pattern for history management
+│   │── factory.py  # Implements Factory Pattern for operations
+│   │── singleton.py  # Implements Singleton Pattern for logging
+│   │── strategy.py  # Implements Strategy Pattern for different operations
+│── plugins/  # Directory for dynamically loaded plugins
+│   │── __init__.py
+│   │── advanced_operations.py  # Example plugin for extra operations
+│── tests/  # Unit tests with Pytest
 │   │── test_calculator.py
 │   │── test_history_manager.py
 │   │── test_repl.py
 │   │── test_plugin_manager.py
-│── .env                          # Environment variables for logging
+│── .env  # Environment variables for logging
 │── .gitignore
-│── README.md                     # Project documentation
-│── requirements.txt               # Dependencies (Pandas, Pytest, etc.)
-│── main.py                        # Entry point for the calculator application
+│── README.md  # Project documentation
+│── requirements.txt  # Dependencies (Pandas, Pytest, etc.)
+│── main.py  # Entry point for the calculator application
+```
+
 
 #Installation
 
